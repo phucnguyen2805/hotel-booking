@@ -1,0 +1,380 @@
+/* =========================
+   HOTEL DETAIL
+========================= */
+
+.hotel-detail {
+
+    max-width: 1100px;
+
+    margin: 40px auto;
+
+    padding: 0 20px;
+
+    display: grid;
+
+    grid-template-columns: 350px 1fr;
+
+    gap: 30px;
+
+    align-items: center;
+}
+
+
+/* Ảnh khách sạn */
+
+.hotel-banner {
+    height: 240px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #0f766e 0%, #0d9488 50%, #14b8a6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hotel-banner::after {
+    content: '';
+    width: 80px;
+    height: 80px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+}
+
+.hotel-banner-icon {
+    display: none;
+}
+
+
+/* Thông tin */
+
+.hotel-detail-info h1 {
+
+    font-size: 34px;
+
+    margin-bottom: 12px;
+}
+
+
+.hotel-detail-info p {
+
+    margin: 12px 0;
+
+    color: #666;
+
+    font-size: 16px;
+}
+
+
+.hotel-detail-info .hotel-stars {
+
+    font-size: 20px;
+
+    color: #ff9800;
+}
+
+
+/* =========================
+   AVAILABILITY
+========================= */
+
+.availability-section {
+
+    max-width: 1100px;
+
+    margin: 30px auto;
+
+    padding: 25px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+}
+
+
+.availability-section h2 {
+
+    margin-bottom: 20px;
+}
+
+
+.date-search {
+
+    display: flex;
+
+    gap: 20px;
+
+    align-items: end;
+}
+
+
+.date-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    flex: 1;
+}
+
+
+.date-group label {
+
+    font-weight: bold;
+
+    font-size: 14px;
+}
+
+
+.date-group input {
+
+    height: 42px;
+
+    padding: 0 10px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+}
+
+
+.check-button {
+
+    height: 42px;
+
+    padding: 0 25px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #0f766e;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.check-button:hover {
+
+    background: #0d5c56;
+}
+
+
+.availability-message {
+
+    margin-top: 15px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   ROOMS
+========================= */
+
+.rooms-section {
+
+    max-width: 1100px;
+
+    margin: 40px auto;
+
+    padding: 0 20px;
+}
+
+
+.room-list {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+.room-card {
+
+    background: white;
+
+    padding: 22px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.08);
+
+    border: 1px solid #eee;
+}
+
+
+.room-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+}
+
+
+.room-name {
+
+    font-size: 21px;
+
+    font-weight: bold;
+}
+
+
+.room-status {
+
+    padding: 5px 10px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: bold;
+}
+
+
+.room-available {
+
+    background: #e8f5e9;
+
+    color: #2e7d32;
+}
+
+
+.room-booked {
+
+    background: #ffebee;
+
+    color: #c62828;
+}
+
+
+.room-info {
+
+    color: #666;
+
+    line-height: 1.8;
+}
+
+
+.room-price {
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    margin-top: 15px;
+
+    margin-bottom: 15px;
+}
+
+
+.book-button {
+
+    width: 100%;
+
+    height: 42px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    background: #ff9800;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+
+.book-button:hover {
+
+    background: #f57c00;
+}
+
+
+.book-button:disabled {
+
+    background: #aaa;
+
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+    .hotel-detail {
+
+        grid-template-columns: 1fr;
+    }
+
+    .date-search {
+
+        flex-direction: column;
+
+        align-items: stretch;
+    }
+
+    .room-list {
+
+        grid-template-columns: 1fr;
+    }
+
+}
+
+/* Banner khách sạn: dùng ảnh thật theo khách sạn thay vì placeholder icon */
+.hotel-banner {
+    min-height: 280px;
+    border-radius: 20px 20px 0 0;
+    background-color: #dbeafe;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hotel-banner-overlay {
+    position: absolute;
+    inset: auto 24px 24px 24px;
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    text-shadow: 0 2px 12px rgba(0,0,0,.35);
+}
+
+.hotel-banner-overlay i {
+    margin-right: 7px;
+}
+
+@media (max-width: 640px) {
+    .hotel-banner {
+        min-height: 210px;
+        border-radius: 14px 14px 0 0;
+    }
+}

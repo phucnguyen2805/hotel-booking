@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới thiệu - Hotel Booking</title>
+    <meta name="description"
+        content="Hotel Booking - nền tảng đặt phòng khách sạn hiện đại, nhanh chóng và đáng tin cậy tại Việt Nam.">
+    <meta property="og:title" content="Hotel Booking - Đặt phòng khách sạn">
+    <meta property="og:description" content="Tìm kiếm và đặt phòng khách sạn dễ dàng, minh bạch.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/about.css">
+    <link rel="stylesheet" href="/css/review-modern.css">
+</head>
+
+<body>
+
+    <header class="header header-light">
+        <a href="/about.html" class="logo">
+            <span>Hotel Booking</span>
+        </a>
+
+        <nav>
+            <a href="/about.html" class="active">Giới thiệu</a>
+            <a href="/search.html">Tìm khách sạn</a>
+            <a id="accountLink" href="/user.html">Tài khoản</a>
+            <a id="loginLink" href="/login.html">Đăng nhập</a>
+            <a id="adminLink" href="/admin.html" style="display:none">Quản trị</a>
+            <span id="userInfo" class="user-info"></span>
+            <button id="logoutButton" class="logout-button" onclick="logout()">Đăng xuất</button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="sm-hero">
+        <div class="sm-hero-inner">
+            <div class="sm-hero-text">
+                <h1>
+                    Kỳ nghỉ trong mơ,<br>
+                    <span class="accent">trải nghiệm thật sự.</span>
+                </h1>
+                <p class="sm-hero-desc">
+                    Chào mừng đến với Hotel Booking — nền tảng đặt phòng khách sạn hiện đại,
+                    giúp bạn tìm kiếm và đặt chỗ nghỉ dưỡng nhanh chóng, minh bạch và đáng tin cậy.
+                </p>
+                <div class="sm-hero-actions">
+                    <a href="/search.html" class="btn-primary">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        Tìm khách sạn ngay
+                    </a>
+                    <a href="#features" class="btn-outline">
+                        Tìm hiểu thêm
+                    </a>
+                </div>
+            </div>
+            <div class="sm-hero-decor">
+                <div class="blob blob-1"></div>
+                <div class="blob blob-2"></div>
+                <div class="blob blob-3"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTRO CARDS -->
+    <section class="sm-section sm-know">
+        <div class="sm-container">
+            <p class="sm-eyebrow">Khám phá chúng tôi</p>
+            <h2 class="sm-heading">Bạn muốn biết điều gì về chúng tôi?</h2>
+
+            <div class="sm-card-grid">
+                <a href="#features" class="sm-card">
+                    <div class="sm-card-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3>An toàn & Bảo mật</h3>
+                    <p>Thông tin cá nhân và lịch sử đặt phòng được bảo vệ chặt chẽ theo tiêu chuẩn hiện đại.</p>
+                </a>
+
+                <a href="#features" class="sm-card">
+                    <div class="sm-card-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3>Đặt phòng nhanh chóng</h3>
+                    <p>Quy trình đặt phòng đơn giản, xác nhận tức thì, không cần chờ đợi.</p>
+                </a>
+
+                <a href="/search.html" class="sm-card">
+                    <div class="sm-card-icon">
+                        <i class="fa-solid fa-filter"></i>
+                    </div>
+                    <h3>Tìm kiếm thông minh</h3>
+                    <p>Lọc theo thành phố, số sao, mức giá và loại phòng chỉ trong vài giây.</p>
+                </a>
+
+                <a href="#mission" class="sm-card">
+                    <div class="sm-card-icon">
+                        <i class="fa-solid fa-handshake"></i>
+                    </div>
+                    <h3>Đồng hành cùng bạn</h3>
+                    <p>Hỗ trợ từ lúc tìm phòng đến khi hoàn tất chuyến đi của bạn.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section id="features" class="sm-section sm-features">
+        <div class="sm-container">
+            <p class="sm-eyebrow">Điểm nổi bật</p>
+            <h2 class="sm-heading">Những gì khiến chúng tôi tự hào</h2>
+            <p class="sm-sub">Cam kết mang đến trải nghiệm đặt phòng tốt nhất cho mọi khách hàng.</p>
+
+            <div class="sm-feature-grid">
+                <div class="sm-feature">
+                    <div class="sm-feature-icon">
+                        <i class="fa-solid fa-lock"></i>
+                    </div>
+                    <h3>Bảo mật toàn diện</h3>
+                    <p>Áp dụng các chính sách bảo mật nghiêm ngặt để đảm bảo an toàn thông tin khách hàng.</p>
+                </div>
+
+                <div class="sm-feature">
+                    <div class="sm-feature-icon">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <h3>Chất lượng đảm bảo</h3>
+                    <p>Mỗi khách sạn đều được kiểm duyệt kỹ lưỡng trước khi xuất hiện trên hệ thống.</p>
+                </div>
+
+                <div class="sm-feature">
+                    <div class="sm-feature-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <h3>Theo dõi thời gian thực</h3>
+                    <p>Xem lịch sử đặt phòng, trạng thái thanh toán mọi lúc, mọi nơi.</p>
+                </div>
+
+                <div class="sm-feature">
+                    <div class="sm-feature-icon">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <h3>Linh hoạt & Đa dạng</h3>
+                    <p>Từ khách sạn bình dân đến resort cao cấp, phù hợp mọi nhu cầu và ngân sách.</p>
+                </div>
+
+                <div class="sm-feature">
+                    <div class="sm-feature-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <h3>Đội ngũ chuyên nghiệp</h3>
+                    <p>Luôn sẵn sàng hỗ trợ bạn 24/7 với thái độ tận tâm và chuyên môn cao.</p>
+                </div>
+
+                <div class="sm-feature">
+                    <div class="sm-feature-icon">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <h3>Giải pháp tối ưu chi phí</h3>
+                    <p>So sánh giá minh bạch, giúp bạn chọn được lựa chọn tốt nhất với mức giá hợp lý.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION -->
+    <section id="mission" class="sm-section sm-mission">
+        <div class="sm-container sm-mission-inner">
+            <div class="sm-mission-text">
+                <p class="sm-eyebrow">Sứ mệnh</p>
+                <h2 class="sm-heading">Vì sao chúng tôi tồn tại?</h2>
+                <p>
+                    Hotel Booking được xây dựng với mục tiêu mang đến trải nghiệm đặt phòng khách sạn
+                    nhanh chóng, minh bạch và đáng tin cậy. Chúng tôi kết nối hàng trăm khách sạn trên
+                    khắp Việt Nam, giúp bạn dễ dàng so sánh giá cả, tiện nghi và đánh giá.
+                </p>
+                <p>
+                    Dù bạn đang tìm kỳ nghỉ cuối tuần thư giãn hay chuyến công tác dài ngày,
+                    hệ thống luôn sẵn sàng hỗ trợ bạn tìm đúng nơi ở phù hợp với nhu cầu và ngân sách.
+                </p>
+                <a href="/search.html" class="btn-primary">
+                    <i class="fa-solid fa-arrow-right"></i>
+                    Bắt đầu tìm phòng
+                </a>
+            </div>
+            <div class="sm-mission-stats">
+                <div class="sm-stat">
+                    <span class="sm-stat-num">100+</span>
+                    <span class="sm-stat-label">Khách sạn đối tác</span>
+                </div>
+                <div class="sm-stat">
+                    <span class="sm-stat-num">50+</span>
+                    <span class="sm-stat-label">Thành phố</span>
+                </div>
+                <div class="sm-stat">
+                    <span class="sm-stat-num">24/7</span>
+                    <span class="sm-stat-label">Hỗ trợ khách hàng</span>
+                </div>
+                <div class="sm-stat">
+                    <span class="sm-stat-num">100%</span>
+                    <span class="sm-stat-label">Minh bạch giá</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="sm-cta">
+        <div class="sm-container">
+            <h2>Sẵn sàng cho chuyến đi tiếp theo?</h2>
+            <p>Hàng trăm lựa chọn đang chờ bạn. Đặt phòng chỉ trong vài phút.</p>
+            <div class="sm-hero-actions" style="justify-content:center">
+                <a href="/search.html" class="btn-primary btn-light">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    Tìm khách sạn
+                </a>
+                <a href="/register.html" class="btn-outline btn-outline-light">
+                    Tạo tài khoản
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="sm-footer">
+        <div class="sm-container sm-footer-inner">
+            <div class="sm-footer-brand">
+                <span class="logo"><span>Hotel Booking</span></span>
+                <p>Nền tảng đặt phòng khách sạn hiện đại, nhanh chóng và đáng tin cậy.</p>
+            </div>
+            <div class="sm-footer-links">
+                <h4>Liên kết</h4>
+                <a href="/about.html">Giới thiệu</a>
+                <a href="/search.html">Tìm khách sạn</a>
+                <a href="/user.html">Tài khoản</a>
+                <a href="/login.html">Đăng nhập</a>
+            </div>
+            <div class="sm-footer-links">
+                <h4>Hỗ trợ</h4>
+                <a href="/register.html">Đăng ký tài khoản</a>
+                <a href="/login.html">Đăng nhập</a>
+            </div>
+        </div>
+        <div class="sm-footer-bottom">
+            <p>&copy; 2026 Hotel Booking. Tất cả quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script src="/js/auth.js?v=5"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thanh toán - Hotel Booking</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/booking.css">
+</head>
+<body>
+<header class="header">
+  <a href="/search.html" class="logo"><span>Hotel Booking</span></a>
+  <nav>
+    <a href="/user.html">Tài khoản</a>
+  </nav>
+</header>
+<main class="booking-container">
+  <h1><i class="fa-solid fa-credit-card"></i> Thanh toán đặt phòng</h1>
+  <div class="booking-card">
+    <p><strong>Mã booking:</strong> <span id="pBookingId">--</span></p>
+    <div class="form-group">
+      <label>Phương thức thanh toán</label>
+      <select id="paymentMethod">
+        <option value="cash">Tiền mặt tại khách sạn</option>
+        <option value="transfer">Chuyển khoản</option>
+        <option value="card">Thẻ (demo)</option>
+      </select>
+    </div>
+    <div id="transferInfo" class="success-details" style="display:none">
+      <div class="row"><span>Ngân hàng</span><strong>Vietcombank</strong></div>
+      <div class="row"><span>STK</span><strong>0123456789</strong></div>
+      <div class="row"><span>Nội dung</span><strong id="transferContent">BOOKING</strong></div>
+    </div>
+    <button class="confirm-button" id="payBtn"><i class="fa-solid fa-check"></i> Xác nhận thanh toán</button>
+    <p id="payMessage" class="booking-message"></p>
+  </div>
+</main>
+<script src="/js/auth.js?v=5"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (!requireLogin()) return;
+  const p = new URLSearchParams(location.search);
+  const bookingId = p.get('bookingId') || '';
+  document.getElementById('pBookingId').textContent = bookingId;
+  document.getElementById('transferContent').textContent = 'BOOKING ' + bookingId;
+  const method = document.getElementById('paymentMethod');
+  method.onchange = () => {
+    document.getElementById('transferInfo').style.display = method.value === 'transfer' ? 'block' : 'none';
+  };
+  document.getElementById('payBtn').onclick = async () => {
+    const guestId = getCurrentUserId();
+    try {
+      const res = await fetch(`/bookings/${encodeURIComponent(bookingId)}/pay?guestId=${encodeURIComponent(guestId)}&paymentMethod=${encodeURIComponent(method.value)}`, { method: 'PUT' });
+      const data = await res.json().catch(()=>({}));
+      if (!res.ok) throw new Error(data.message || 'Thanh toán thất bại');
+      showToast('Thanh toán thành công', 'success');
+      setTimeout(() => location.href = '/user.html', 800);
+    } catch (e) {
+      showToast(e.message, 'error');
+    }
+  };
+});
+</script>
+</body>
+</html>

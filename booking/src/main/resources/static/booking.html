@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt phòng - Hotel Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/booking.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="/about.html" class="logo">
+            <span>Hotel Booking</span>
+        </a>
+
+        <nav>
+            <a href="/about.html">Giới thiệu</a>
+            <a href="/search.html">Tìm khách sạn</a>
+            <a id="accountLink" href="/user.html" style="display:none">Tài khoản</a>
+            <a id="loginLink" href="/login.html">Đăng nhập</a>
+            <a id="adminLink" href="/admin.html" style="display:none">Quản trị</a>
+            <span id="userInfo" class="user-info"></span>
+            <button id="logoutButton" class="logout-button" onclick="logout()">Đăng xuất</button>
+        </nav>
+    </header>
+
+    <main class="booking-container">
+        <h1><i class="fa-solid fa-calendar-check"></i> Xác nhận đặt phòng</h1>
+
+        <div class="booking-layout">
+            <section class="booking-form">
+                <h2>Thông tin đặt phòng</h2>
+
+                <div class="form-group">
+                    <div class="logged-user-box">
+                        <i class="fa-solid fa-user"></i>
+                        Tài khoản đặt phòng:
+                        <strong id="bookingUser">--</strong>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-calendar-day"></i> Ngày nhận phòng</label>
+                    <input type="date" id="checkIn" onchange="onStayChanged()">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-moon"></i> Số đêm lưu trú</label>
+                    <select id="nights" onchange="onNightsChanged()">
+                        <option value="1">1 đêm</option>
+                        <option value="2" selected>2 đêm</option>
+                        <option value="3">3 đêm</option>
+                        <option value="4">4 đêm</option>
+                        <option value="5">5 đêm</option>
+                        <option value="6">6 đêm</option>
+                        <option value="7">7 đêm</option>
+                        <option value="10">10 đêm</option>
+                        <option value="14">14 đêm</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-calendar-check"></i> Ngày trả phòng</label>
+                    <input type="date" id="checkOut" onchange="onStayChanged()">
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fa-solid fa-users"></i> Số người ở</label>
+                    <select id="guests">
+                        <option value="1">1 người</option>
+                        <option value="2" selected>2 người</option>
+                        <option value="3">3 người</option>
+                        <option value="4">4 người</option>
+                        <option value="5">5 người</option>
+                        <option value="6">6 người</option>
+                    </select>
+                </div>
+
+                <button class="confirm-button" onclick="createBooking()">
+                    <i class="fa-solid fa-check"></i> Xác nhận đặt phòng
+                </button>
+                <button class="back-button" onclick="goBack()">
+                    <i class="fa-solid fa-arrow-left"></i> Quay lại
+                </button>
+
+                <div id="bookingMessage" class="booking-message"></div>
+            </section>
+
+            <section class="booking-summary">
+                <h2><i class="fa-solid fa-receipt"></i> Thông tin phòng</h2>
+
+                <div class="summary-item">
+                    <span>Khách sạn</span>
+                    <strong id="hotelId">--</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Phòng</span>
+                    <strong id="roomId">--</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Giá / đêm</span>
+                    <strong id="roomPrice">--</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Số đêm</span>
+                    <strong id="numberOfNights">--</strong>
+                </div>
+
+                <div class="summary-item">
+                    <span>Số người</span>
+                    <strong id="numberOfGuests">2</strong>
+                </div>
+
+                <hr>
+
+                <div class="total">
+                    <span>Tổng tiền</span>
+                    <strong id="totalPrice">0 đ</strong>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hotel Booking. Tất cả quyền được bảo lưu.</p>
+    </footer>
+
+    <script src="/js/auth.js?v=5"></script>
+    <script src="/js/booking.js"></script>
+
+</body>
+
+</html>

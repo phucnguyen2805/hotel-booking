@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard - Hotel Booking</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <link rel="stylesheet" href="/css/admin.css">
+
+</head>
+
+
+<body>
+    <button class="admin-menu-toggle" onclick="toggleAdminSidebar()" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleAdminSidebar(false)"></div>
+
+    <div class="admin-layout">
+
+
+        <!-- =========================================
+         SIDEBAR
+    ========================================== -->
+
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+                <i class="fa-solid fa-hotel"></i>
+                <span>Hotel Booking</span>
+            </div>
+
+            <div class="admin-label">ADMIN</div>
+
+            <nav class="sidebar-menu">
+
+                <button class="menu-item active" onclick="showSection('dashboard', this)">
+                    <i class="fa-solid fa-chart-line"></i>
+                    <span>Tổng quan</span>
+                </button>
+
+                <button class="menu-item" onclick="showSection('hotels', this)">
+                    <i class="fa-solid fa-building"></i>
+                    <span>Khách sạn</span>
+                </button>
+
+                <button class="menu-item" onclick="showSection('rooms', this)">
+                    <i class="fa-solid fa-bed"></i>
+                    <span>Phòng</span>
+                </button>
+
+                <button class="menu-item" onclick="showSection('bookings', this)">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>Booking</span>
+                </button>
+
+                <button class="menu-item" onclick="showSection('revenue', this)">
+                    <i class="fa-solid fa-coins"></i>
+                    <span>Doanh thu</span>
+                </button>
+
+                <button class="menu-item" onclick="showSection('users', this)">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Người dùng</span>
+                </button>
+                <button class="menu-item" onclick="showSection('audit', this)">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                    <span>Nhật ký</span>
+                </button>
+
+                <button class="menu-item" onclick="showSection('backup', this)">
+                    <i class="fa-solid fa-database"></i>
+                    <span>Backup / Restore</span>
+                </button>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="/about.html">
+                    <i class="fa-solid fa-house"></i>
+                    Trang chủ
+                </a>
+                <button onclick="logout()">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Đăng xuất
+                </button>
+            </div>
+
+        </aside>
+
+
+
+        <!-- =========================================
+         MAIN
+    ========================================== -->
+
+        <main class="admin-main">
+
+
+            <!-- HEADER -->
+
+            <header class="admin-header">
+
+                <div>
+
+                    <h1 id="pageTitle">
+                        Tổng quan
+                    </h1>
+
+                    <p>
+                        Quản lý hệ thống Hotel Booking
+                    </p>
+
+                </div>
+
+
+                <div class="admin-user"><i class="fa-solid fa-user"></i> <span id="adminName">
+                        Admin
+                    </span>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =====================================
+             DASHBOARD
+        ====================================== -->
+
+            <section id="dashboard" class="admin-section active">
+
+                <div class="welcome-box">
+
+                    <div>
+
+                        <h2>
+                            Xin chào Admin
+                        </h2>
+
+                        <p>
+                            Chào mừng bạn đến với trang quản trị Hotel Booking.
+                        </p>
+
+                    </div>
+
+                    <div class="welcome-icon"><i class="fa-solid fa-hotel"></i></div>
+
+                </div>
+
+
+                <div id="adminNotifications" class="admin-notifications"></div>
+                <div class="chart-card" style="margin-bottom:20px">
+                    <div class="chart-header">
+                        <h3><i class="fa-solid fa-chart-area"></i> Doanh thu 6 tháng gần nhất</h3>
+                    </div>
+                    <canvas id="dashboardChart" height="110"></canvas>
+                </div>
+                <div class="stat-grid">
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-building"></i></div>
+                        <div>
+                            <div class="stat-title">Khách sạn</div>
+
+                            <div id="hotelCount" class="stat-value">
+
+                                0
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-bed"></i></div>
+                        <div>
+                            <div class="stat-title">Phòng</div>
+
+                            <div id="roomCount" class="stat-value">
+
+                                0
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                        <div>
+                            <div class="stat-title">Booking tháng</div>
+                            <div id="bookingCount" class="stat-value">0</div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="stat-card">
+                        <div class="stat-icon"><i class="fa-solid fa-coins"></i></div>
+
+                        <div>
+
+                            <div class="stat-title">
+                                Doanh thu tháng
+                            </div>
+
+                            <div id="revenueCount" class="stat-value">
+
+                                0 đ
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div style="margin:12px 0 20px">
+                    <button class="export-btn" onclick="runSeedData()"><i class="fa-solid fa-database"></i> Seed dữ liệu
+                        mẫu</button>
+                </div>
+                <div class="quick-actions">
+
+                    <h2>
+                        Chức năng quản trị
+                    </h2>
+
+
+                    <div class="quick-grid">
+
+                        <button onclick="openSection('hotels')">
+                            <i class="fa-solid fa-building"></i>
+                            <span>Quản lý khách sạn</span>
+                        </button>
+
+
+                        <button onclick="openSection('rooms')">
+                            <i class="fa-solid fa-bed"></i>
+                            <span>Quản lý phòng</span>
+                        </button>
+
+
+                        <button onclick="openSection('revenue')">
+                            <i class="fa-solid fa-chart-pie"></i>
+                            <span>Xem doanh thu</span>
+                        </button>
+
+                        <button onclick="openSection('bookings')">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Quản lý booking</span>
+                        </button>
+
+                        <button onclick="openSection('backup')">
+                            <i class="fa-solid fa-database"></i>
+                            <span>Backup dữ liệu</span>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+             HOTELS
+        ====================================== -->
+
+            <section id="hotels" class="admin-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2><i class="fa-solid fa-building"></i> Quản lý khách sạn</h2>
+
+                        <p>
+                            Thêm, sửa và xóa khách sạn
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" onclick="openHotelModal()">
+
+                        <i class="fa-solid fa-plus"></i> Thêm khách sạn
+
+                    </button>
+
+                </div>
+
+
+                <div id="hotelMessage" class="message"></div>
+
+                <div class="admin-search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="hotelSearch" placeholder="Tìm theo mã, tên, thành phố..."
+                        oninput="filterHotels()">
+                </div>
+
+
+                <div class="table-card">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Mã</th>
+
+                                <th>Tên khách sạn</th>
+
+                                <th>Thành phố</th>
+
+                                <th>Địa chỉ</th>
+
+                                <th>Sao</th>
+
+                                <th>Thao tác</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="hotelTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+             ROOMS
+        ====================================== -->
+
+            <section id="rooms" class="admin-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2><i class="fa-solid fa-bed"></i> Quản lý phòng</h2>
+
+                        <p>
+                            Quản lý phòng theo khách sạn
+                        </p>
+
+                    </div>
+
+
+                    <button class="primary-button" onclick="openRoomModal()">
+
+                        <i class="fa-solid fa-plus"></i> Thêm phòng
+
+                    </button>
+
+                </div>
+
+
+                <div id="roomMessage" class="message">
+                </div>
+
+
+                <div class="filter-box admin-filter-row">
+                    <div>
+                        <label>Chọn khách sạn</label>
+                        <select id="roomHotelFilter" onchange="loadRooms()">
+                            <option value="">-- Tất cả khách sạn --</option>
+                        </select>
+                    </div>
+                </div>
+
+
+                <div class="table-card">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Mã phòng</th>
+
+                                <th>Khách sạn</th>
+
+                                <th>Loại phòng</th>
+
+                                <th>Giá</th>
+
+                                <th>Sức chứa</th>
+
+                                <th>Trạng thái</th>
+
+                                <th>Thao tác</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="roomTable">
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+             REVENUE
+        ====================================== -->
+
+            <section id="revenue" class="admin-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2><i class="fa-solid fa-chart-pie"></i>
+                            Doanh thu
+                        </h2>
+
+                        <p>
+                            Xem doanh thu theo khách sạn và tháng
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="revenue-form">
+
+                    <div>
+
+                        <label>
+                            Khách sạn
+                        </label>
+
+                        <select id="revenueHotel">
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Tháng
+                        </label>
+
+                        <input type="month" id="revenueMonth">
+
+                    </div>
+
+
+                    <button class="primary-button" onclick="loadRevenue()">
+                        <i class="fa-solid fa-chart-pie"></i> Xem doanh thu
+                    </button>
+                    <button class="export-btn" type="button" onclick="exportRevenueCsv()">
+                        <i class="fa-solid fa-file-csv"></i> Xuất CSV
+                    </button>
+
+                </div>
+
+
+                <div id="revenueMessage" class="message">
+                </div>
+
+
+                <div id="revenueResult" class="revenue-result"></div>
+
+                <div class="chart-grid" id="revenueCharts">
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3><i class="fa-solid fa-chart-line"></i> Doanh thu theo ngày</h3>
+                        </div>
+                        <canvas id="revenueChart" height="120"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <div class="chart-header">
+                            <h3><i class="fa-solid fa-chart-column"></i> Booking theo ngày</h3>
+                        </div>
+                        <canvas id="bookingChart" height="120"></canvas>
+                    </div>
+                </div>
+
+            </section>
+
+
+
+
+            <!-- =====================================
+             BOOKINGS
+        ====================================== -->
+
+            <section id="bookings" class="admin-section">
+
+                <div class="section-header">
+                    <div>
+                        <h2><i class="fa-solid fa-calendar-check"></i> Quản lý Booking</h2>
+                        <p>Xem ai đã đặt phòng, chỉnh trạng thái hoặc hủy</p>
+                    </div>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap">
+                        <button class="export-btn" onclick="exportBookingsCsv()">
+                            <i class="fa-solid fa-file-csv"></i> Xuất CSV
+                        </button>
+                        <button class="primary-button" onclick="loadAdminBookings()">
+                            <i class="fa-solid fa-rotate"></i> Làm mới
+                        </button>
+                    </div>
+                </div>
+
+                <div id="bookingAdminMessage" class="message"></div>
+
+                <div class="admin-search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="bookingSearch" placeholder="Tìm mã booking, khách, khách sạn, phòng..."
+                        oninput="filterBookings()">
+                </div>
+
+                <div class="booking-stats" id="bookingStats"></div>
+
+                <div class="table-card">
+                    <div class="table-scroll">
+                        <table class="booking-admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Mã</th>
+                                    <th>Khách</th>
+                                    <th>Khách sạn</th>
+                                    <th>Phòng</th>
+                                    <th>Nhận phòng</th>
+                                    <th>Trả phòng</th>
+                                    <th>Tổng tiền</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thanh toán</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="bookingTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- =====================================
+             BACKUP
+        ====================================== -->
+
+
+            <section id="audit" class="admin-section">
+                <div class="section-header">
+                    <div>
+                        <h2><i class="fa-solid fa-clipboard-list"></i> Nhật ký thao tác</h2>
+                        <p>Theo dõi các hành động quan trọng</p>
+                    </div>
+                    <button class="primary-button" onclick="loadAuditLogs()"><i class="fa-solid fa-rotate"></i> Làm
+                        mới</button>
+                </div>
+                <div class="table-card">
+                    <div class="table-scroll">
+                        <table class="booking-admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Thời gian</th>
+                                    <th>Actor</th>
+                                    <th>Hành động</th>
+                                    <th>Chi tiết</th>
+                                </tr>
+                            </thead>
+                            <tbody id="auditTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="users" class="admin-section">
+                <div class="section-header">
+                    <div>
+                        <h2><i class="fa-solid fa-users"></i> Quản lý người dùng</h2>
+                        <p>Xem danh sách tài khoản và khóa/mở khóa</p>
+                    </div>
+                    <button class="primary-button" onclick="loadAdminUsers()">
+                        <i class="fa-solid fa-rotate"></i> Làm mới
+                    </button>
+                </div>
+                <div class="admin-search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="userSearch" placeholder="Tìm theo tên, email, mã user..."
+                        oninput="filterUsers()">
+                </div>
+                <div class="table-card">
+                    <div class="table-scroll">
+                        <table class="booking-admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Mã</th>
+                                    <th>Tên</th>
+                                    <th>Email</th>
+                                    <th>Vai trò</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <section id="backup" class="admin-section">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            Backup / Restore
+                        </h2>
+
+                        <p>
+                            Sao lưu và khôi phục dữ liệu hệ thống
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="backup-grid">
+
+
+                    <div class="backup-card">
+
+                        <div class="backup-icon">
+
+                        </div>
+
+                        <h3><i class="fa-solid fa-cloud-arrow-up"></i> Backup dữ liệu</h3>
+
+                        <p>
+                            Sao lưu toàn bộ dữ liệu Hotel Booking.
+                        </p>
+
+                        <button class="primary-button" onclick="backupData()">
+
+                            Backup
+
+                        </button>
+
+                    </div>
+
+
+
+                    <div class="backup-card">
+
+                        <div class="backup-icon">
+
+                        </div>
+
+                        <h3><i class="fa-solid fa-cloud-arrow-down"></i> Restore dữ liệu</h3>
+
+                        <p>
+                            Khôi phục dữ liệu từ file backup.
+                        </p>
+
+                        <button class="warning-button" onclick="restoreData()">
+
+                            Restore
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div id="backupMessage" class="message">
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =========================================
+     HOTEL MODAL
+========================================== -->
+
+    <div id="hotelModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 id="hotelModalTitle">
+                    Thêm khách sạn
+                </h2>
+
+                <button onclick="closeHotelModal()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <input type="hidden" id="hotelEditId">
+
+
+            <div class="form-group">
+
+                <label>
+                    Mã khách sạn
+                </label>
+
+                <input id="hotelId" placeholder="VD: H02">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Tên khách sạn
+                </label>
+
+                <input id="hotelName" placeholder="Tên khách sạn">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Thành phố
+                </label>
+
+                <input id="hotelCity" placeholder="VD: Ho Chi Minh">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Địa chỉ
+                </label>
+
+                <input id="hotelAddress" placeholder="Địa chỉ">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Số sao
+                </label>
+
+                <input type="number" id="hotelStars" min="1" max="5" value="5">
+
+            </div>
+            <div class="form-group">
+                <label>Ảnh (URL)</label>
+                <input type="text" id="hotelImageUrl"
+                    placeholder="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1000&q=85">
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button class="secondary-button" onclick="closeHotelModal()">
+
+                    Hủy
+
+                </button>
+
+
+                <button class="primary-button" onclick="saveHotel()">
+
+                    Lưu
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================
+     ROOM MODAL
+========================================== -->
+
+    <div id="roomModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 id="roomModalTitle">
+                    Thêm phòng
+                </h2>
+
+                <button onclick="closeRoomModal()">
+                    ×
+                </button>
+
+            </div>
+
+
+            <input type="hidden" id="roomEditId">
+
+
+            <div class="form-group">
+
+                <label>
+                    Khách sạn
+                </label>
+
+                <select id="roomHotelId">
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Mã phòng
+                </label>
+
+                <input id="roomId" placeholder="VD: R103">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Loại phòng
+                </label>
+
+                <input id="roomType" placeholder="VD: Deluxe">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Giá / đêm
+                </label>
+
+                <input type="number" id="roomPrice" placeholder="VD: 1800000">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Sức chứa
+                </label>
+
+                <input type="number" id="roomMaxGuest" min="1" value="2">
+
+            </div>
+
+
+            <div class="modal-actions">
+
+                <button class="secondary-button" onclick="closeRoomModal()">
+
+                    Hủy
+
+                </button>
+
+
+                <button class="primary-button" onclick="saveRoom()">
+
+                    Lưu
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <script src="/js/auth.js?v=5"></script>
+    <script src="/js/admin.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập - Hotel Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/auth.css">
+</head>
+
+<body>
+
+        <header class="header">
+        <a href="/about.html" class="logo">
+            <span>Hotel Booking</span>
+        </a>
+        <nav>
+            <a href="/about.html">Giới thiệu</a>
+            <a href="/search.html">Tìm khách sạn</a>
+            <a href="/register.html">Đăng ký</a>
+        </nav>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-card">
+            <div class="auth-title">
+                <h1><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</h1>
+                <p>Đăng nhập để đặt phòng và quản lý booking</p>
+            </div>
+
+            <form onsubmit="login(event)">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="email" placeholder="Nhập email của bạn" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Mật khẩu</label>
+                    <input type="password" id="password" placeholder="Nhập mật khẩu" required>
+                </div>
+
+                <button type="submit" class="auth-button"><i class="fa-solid fa-right-to-bracket"></i> Đăng nhập</button>
+            </form>
+
+            <div id="loginMessage" class="auth-message"></div>
+
+            <div class="auth-footer">
+                Chưa có tài khoản?
+                <a href="/register.html">Đăng ký ngay</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/auth.js?v=5"></script>
+    <script src="/js/login.js"></script>
+
+</body>
+
+</html>

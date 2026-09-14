@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tìm khách sạn - Hotel Booking</title>
+    <meta name="description"
+        content="Tìm và đặt phòng khách sạn theo thành phố, số sao, giá và loại phòng trên Hotel Booking.">
+    <meta property="og:title" content="Tìm khách sạn - Hotel Booking">
+    <meta property="og:description" content="Tìm kiếm khách sạn nhanh chóng, minh bạch giá.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="/about.html" class="logo">
+            <span>Hotel Booking</span>
+        </a>
+
+        <nav>
+            <a href="/about.html">Giới thiệu</a>
+            <a href="/search.html" class="active">Tìm khách sạn</a>
+            <a id="accountLink" href="/user.html" style="display:none">Tài khoản</a>
+            <a id="loginLink" href="/login.html">Đăng nhập</a>
+            <a id="adminLink" href="/admin.html" style="display:none">Quản trị</a>
+            <span id="userInfo" class="user-info"></span>
+            <button id="logoutButton" class="logout-button" onclick="logout()">Đăng xuất</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Tìm khách sạn phù hợp với bạn</h1>
+                <p>Khám phá hàng trăm khách sạn chất lượng với giá tốt nhất. Đặt phòng nhanh chóng, dễ dàng và an toàn.
+                </p>
+            </div>
+
+            <div class="search-box">
+                <div class="form-group">
+                    <label>Thành phố</label>
+                    <input type="text" id="city" placeholder="Ví dụ: Ho Chi Minh">
+                </div>
+
+                <div class="form-group">
+                    <label>Số sao tối thiểu</label>
+                    <select id="minStars">
+                        <option value="">Tất cả</option>
+                        <option value="1">1 sao trở lên</option>
+                        <option value="2">2 sao trở lên</option>
+                        <option value="3">3 sao trở lên</option>
+                        <option value="4">4 sao trở lên</option>
+                        <option value="5">5 sao</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Giá phòng tối đa</label>
+                    <input type="number" id="maxPrice" placeholder="Ví dụ: 1500000">
+                </div>
+
+                <div class="form-group">
+                    <label>Loại phòng</label>
+                    <select id="roomType">
+                        <option value="">Tất cả</option>
+                        <option value="Deluxe">Deluxe</option>
+                        <option value="Superior">Superior</option>
+                        <option value="Standard">Standard</option>
+                    </select>
+                </div>
+
+                <button class="search-button" onclick="searchHotels()">
+                    <i class="fa-solid fa-magnifying-glass"></i> Tìm kiếm
+                </button>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <div class="section-title">
+                <h2><i class="fa-solid fa-building"></i> Khách sạn</h2>
+                <span id="resultCount">Chưa tìm kiếm</span>
+            </div>
+            <div class="sort-bar">
+                <label for="hotelSort"><i class="fa-solid fa-arrow-down-wide-short"></i> Sắp xếp</label>
+                <select id="hotelSort" onchange="applyHotelSort()">
+                    <option value="default">Mặc định</option>
+                    <option value="stars_desc">Sao cao → thấp</option>
+                    <option value="stars_asc">Sao thấp → cao</option>
+                    <option value="name_asc">Tên A → Z</option>
+                    <option value="name_desc">Tên Z → A</option>
+                </select>
+            </div>
+
+            <div id="hotelResults" class="hotel-grid">
+                <div class="empty-message">
+                    <p>Nhập thông tin tìm kiếm để tìm khách sạn phù hợp</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hotel Booking. Tất cả quyền được bảo lưu.</p>
+    </footer>
+
+    <script src="/js/auth.js?v=5"></script>
+    <script src="/js/app.js"></script>
+
+</body>
+
+</html>
