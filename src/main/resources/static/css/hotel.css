@@ -378,3 +378,14 @@
         border-radius: 14px 14px 0 0;
     }
 }
+
+/* HOTEL POLISH */
+.room-card, .hotel-detail-card {
+  border: 1px solid #e5e5e5 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 8px 24px rgba(23,23,23,0.06) !important;
+  overflow: hidden;
+}
+.room-card-image {
+  border-radius: 0 !important;
+}

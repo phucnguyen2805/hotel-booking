@@ -1,21 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary: #0f766e;
-    --primary-dark: #0d5c56;
-    --primary-light: #14b8a6;
-    --accent: #f59e0b;
-    --accent-hover: #d97706;
-    --bg: #f8fafc;
+    /* Phong cách gần Library: neutral + accent teal */
+    --primary: #171717;
+    --primary-dark: #0a0a0a;
+    --primary-light: #0f766e;
+    --accent: #0f766e;
+    --accent-hover: #0d5c56;
+    --bg: #f7f7f6;
     --surface: #ffffff;
-    --text: #0f172a;
-    --text-muted: #64748b;
-    --border: #e2e8f0;
-    --shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
-    --shadow-lg: 0 12px 40px rgba(15, 23, 42, 0.12);
-    --radius: 12px;
-    --radius-sm: 8px;
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --text: #171717;
+    --text-muted: #737373;
+    --border: #e5e5e5;
+    --shadow: 0 1px 2px rgba(23, 23, 23, 0.04), 0 8px 24px rgba(23, 23, 23, 0.06);
+    --shadow-lg: 0 12px 40px rgba(23, 23, 23, 0.1);
+    --radius: 16px;
+    --radius-sm: 10px;
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
@@ -29,12 +30,14 @@ html {
 }
 
 body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--bg);
+    font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, rgba(255,255,255,0.95), #f7f7f6 45%);
     color: var(--text);
     line-height: 1.6;
+    min-height: 100vh;
     opacity: 0;
     transition: opacity 0.4s ease;
+    -webkit-font-smoothing: antialiased;
 }
 
 body.page-loaded {
@@ -937,4 +940,285 @@ footer a:hover {
   .hero-content h1 { font-size:1.85rem; }
   .hotel-list, .hotel-grid { grid-template-columns:1fr !important; }
   .hotel-card { min-width:0; }
+}
+
+
+/* ========== UI POLISH (Library-inspired) ========== */
+.header {
+    height: 68px;
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-bottom: 1px solid var(--border);
+    box-shadow: none !important;
+}
+
+.logo, .logo span {
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+    color: var(--text) !important;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+}
+
+.header nav a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    padding: 8px 12px;
+    border-radius: 999px;
+    transition: var(--transition);
+}
+
+.header nav a:hover,
+.header nav a.active {
+    color: var(--text);
+    background: #f5f5f5;
+}
+
+.logout-button, .primary-button, .search-button, .view-button {
+    background: var(--primary) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 999px !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.01em;
+    box-shadow: none !important;
+    transition: var(--transition) !important;
+}
+
+.logout-button:hover, .primary-button:hover, .search-button:hover, .view-button:hover {
+    background: var(--primary-dark) !important;
+    transform: translateY(-1px);
+}
+
+.secondary-button, .favorite-button {
+    border-radius: 999px !important;
+    border: 1px solid var(--border) !important;
+    background: #fff !important;
+    color: var(--text) !important;
+}
+
+.hero {
+    background: transparent !important;
+    padding: 48px 6% 24px !important;
+}
+
+.hero h1 {
+    font-size: clamp(1.75rem, 4vw, 2.5rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.04em !important;
+    color: var(--text) !important;
+}
+
+.hero p {
+    color: var(--text-muted) !important;
+    max-width: 520px;
+}
+
+.search-box {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 20px !important;
+    box-shadow: var(--shadow) !important;
+    padding: 20px !important;
+}
+
+.search-box label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+}
+
+.search-box input,
+.search-box select,
+.form-group input,
+.form-group select,
+.form-group textarea {
+    border: 1px solid var(--border) !important;
+    border-radius: 12px !important;
+    background: #fafafa !important;
+    padding: 10px 14px !important;
+}
+
+.search-box input:focus,
+.search-box select:focus,
+.form-group input:focus {
+    outline: 2px solid var(--text);
+    outline-offset: 1px;
+    background: #fff !important;
+}
+
+.hotel-card, .table-card, .stat-card, .backup-card, .revenue-result {
+    background: var(--surface) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow) !important;
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.hotel-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg) !important;
+}
+
+.hotel-image {
+    height: 180px !important;
+    border-radius: 0 !important;
+}
+
+.hotel-info {
+    padding: 16px 18px 20px !important;
+}
+
+.hotel-name {
+    font-weight: 700 !important;
+    letter-spacing: -0.02em;
+    font-size: 1.05rem !important;
+}
+
+.section-title h2 {
+    letter-spacing: -0.03em;
+    font-weight: 700;
+}
+
+footer, .footer {
+    background: transparent !important;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted) !important;
+    padding: 28px 6% !important;
+    font-size: 0.875rem;
+}
+
+.empty-message {
+    border: 1px dashed var(--border) !important;
+    border-radius: var(--radius) !important;
+    background: #fafafa !important;
+    color: var(--text-muted) !important;
+}
+
+.badge, .status-badge {
+    border-radius: 999px !important;
+    font-size: 0.75rem !important;
+    font-weight: 600 !important;
+}
+
+.user-info {
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+/* Toast / message */
+.message.success { border-radius: 12px; border: 1px solid #bbf7d0; }
+.message.error { border-radius: 12px; border: 1px solid #fecaca; }
+
+
+/* ========== UX EFFECTS v2 ========== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.hotel-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+  gap: 24px !important;
+}
+
+.hotel-card {
+  animation: fadeUp 0.45s ease both;
+  cursor: default;
+}
+
+.hotel-card:nth-child(1) { animation-delay: 0.05s; }
+.hotel-card:nth-child(2) { animation-delay: 0.1s; }
+.hotel-card:nth-child(3) { animation-delay: 0.15s; }
+.hotel-card:nth-child(4) { animation-delay: 0.2s; }
+.hotel-card:nth-child(5) { animation-delay: 0.25s; }
+.hotel-card:nth-child(6) { animation-delay: 0.3s; }
+
+.hotel-card:hover .hotel-image {
+  transform: scale(1.04);
+}
+
+.hotel-image {
+  transition: transform 0.5s ease !important;
+  overflow: hidden;
+}
+
+.hotel-card .view-button {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.hotel-stars {
+  color: #f59e0b !important;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+}
+
+.header {
+  animation: fadeIn 0.35s ease;
+}
+
+.search-box {
+  animation: scaleIn 0.4s ease;
+}
+
+.hero h1 {
+  animation: fadeUp 0.4s ease;
+}
+
+.results-section {
+  animation: fadeUp 0.5s ease 0.1s both;
+}
+
+.sort-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.sort-bar select {
+  border-radius: 999px !important;
+  border: 1px solid var(--border) !important;
+  padding: 8px 14px !important;
+  background: #fff !important;
+}
+
+.favorite-button {
+  width: 40px;
+  height: 40px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, background 0.2s !important;
+}
+
+.favorite-button:hover {
+  transform: scale(1.08);
+  background: #fef2f2 !important;
+  color: #e11d48 !important;
+}
+
+.favorite-button.is-favorite {
+  color: #e11d48 !important;
+  border-color: #fecaca !important;
+  background: #fff1f2 !important;
+}
+
+/* Consistent black primary across pages */
+.header nav a.active {
+  background: #171717 !important;
+  color: #fff !important;
 }

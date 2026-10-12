@@ -143,3 +143,21 @@
 .auth-footer a:hover {
     text-decoration: underline;
 }
+
+/* AUTH POLISH */
+body {
+  background: #f7f7f6 !important;
+  font-family: Inter, system-ui, sans-serif !important;
+}
+.auth-card, .login-card, .register-card, form {
+  border-radius: 16px !important;
+}
+input, button {
+  border-radius: 12px !important;
+}
+button[type="submit"], .login-button, .register-button {
+  background: #171717 !important;
+  color: #fff !important;
+  border-radius: 999px !important;
+  font-weight: 600 !important;
+}

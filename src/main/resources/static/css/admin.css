@@ -1049,3 +1049,264 @@ input {
 .table-button.role-button { border-color:#99f6e4; color:#0f766e; background:#f0fdfa; }
 .table-button.role-button:hover { background:#ccfbf1; }
 @media(max-width:900px){.admin-content,.admin-section{min-width:0}.section-header{gap:12px}.table-scroll{margin:0 -4px;padding-bottom:4px}.booking-admin-table{min-width:760px}.admin-header{padding:16px 18px}.admin-main{overflow-x:hidden}}
+
+/* ========== ADMIN UI POLISH (Library-inspired) ========== */
+:root {
+    --admin-bg: #f7f7f6;
+    --admin-sidebar: #ffffff;
+    --admin-text: #171717;
+    --admin-muted: #737373;
+    --admin-border: #e5e5e5;
+    --admin-active: #171717;
+}
+
+body {
+    background: var(--admin-bg) !important;
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif !important;
+    color: var(--admin-text);
+    -webkit-font-smoothing: antialiased;
+}
+
+.admin-layout {
+    background: var(--admin-bg);
+}
+
+.sidebar {
+    background: var(--admin-sidebar) !important;
+    border-right: 1px solid var(--admin-border) !important;
+    box-shadow: none !important;
+}
+
+.sidebar-logo {
+    color: var(--admin-text) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.03em;
+}
+
+.admin-label {
+    font-size: 9px !important;
+    letter-spacing: 0.28em !important;
+    text-transform: uppercase;
+    color: #a3a3a3 !important;
+    font-weight: 600;
+}
+
+.menu-item {
+    border-radius: 12px !important;
+    margin: 2px 10px !important;
+    color: #525252 !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+}
+
+.menu-item:hover {
+    background: #f5f5f5 !important;
+    color: var(--admin-text) !important;
+}
+
+.menu-item.active {
+    background: var(--admin-active) !important;
+    color: #fff !important;
+}
+
+.menu-item.active i {
+    color: #fff !important;
+}
+
+.admin-main {
+    background: var(--admin-bg) !important;
+}
+
+.admin-header {
+    background: transparent !important;
+    border-bottom: 1px solid var(--admin-border);
+    box-shadow: none !important;
+}
+
+.admin-header h1 {
+    letter-spacing: -0.03em;
+    font-weight: 700;
+}
+
+.stat-card, .table-card, .welcome-box, .chart-card, .backup-card {
+    background: #fff !important;
+    border: 1px solid var(--admin-border) !important;
+    border-radius: 16px !important;
+    box-shadow: 0 1px 2px rgba(23,23,23,0.04), 0 8px 24px rgba(23,23,23,0.05) !important;
+}
+
+.primary-button, .export-btn {
+    background: #171717 !important;
+    color: #fff !important;
+    border-radius: 999px !important;
+    border: none !important;
+    font-weight: 600 !important;
+    padding: 10px 18px !important;
+}
+
+.primary-button:hover, .export-btn:hover {
+    background: #0a0a0a !important;
+}
+
+.secondary-button, .warning-button {
+    border-radius: 999px !important;
+}
+
+.edit-button, .table-button {
+    border-radius: 8px !important;
+    font-size: 0.8rem !important;
+}
+
+.delete-button, .table-button.danger {
+    border-radius: 8px !important;
+}
+
+table thead th {
+    font-size: 0.75rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #737373 !important;
+    font-weight: 600 !important;
+    background: #fafafa !important;
+    border-bottom: 1px solid var(--admin-border) !important;
+}
+
+table tbody td {
+    border-bottom: 1px solid #f0f0f0 !important;
+}
+
+.admin-search-box {
+    background: #fff !important;
+    border: 1px solid var(--admin-border) !important;
+    border-radius: 12px !important;
+    box-shadow: none !important;
+}
+
+.modal-content {
+    border-radius: 16px !important;
+    border: 1px solid var(--admin-border);
+    box-shadow: 0 20px 50px rgba(23,23,23,0.15) !important;
+}
+
+.sidebar-bottom a,
+.sidebar-bottom button {
+    border-radius: 12px !important;
+    color: #525252 !important;
+}
+
+.sidebar-bottom button:hover {
+    background: #f5f5f5 !important;
+}
+
+.quick-grid button {
+    border-radius: 14px !important;
+    border: 1px solid var(--admin-border) !important;
+    background: #fff !important;
+    box-shadow: none !important;
+}
+
+.quick-grid button:hover {
+    border-color: #171717 !important;
+    background: #fafafa !important;
+}
+
+.badge-success { background: #ecfdf5 !important; color: #065f46 !important; }
+.badge-danger { background: #fef2f2 !important; color: #991b1b !important; }
+.badge-warning { background: #fffbeb !important; color: #92400e !important; }
+.badge-info { background: #eff6ff !important; color: #1e40af !important; }
+
+
+
+/* ========== ADMIN UX v2 ========== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.admin-section.active {
+  animation: fadeUp 0.35s ease;
+}
+
+.stat-grid {
+  gap: 16px !important;
+}
+
+.stat-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(23,23,23,0.08) !important;
+}
+
+.stars-cell {
+  color: #f59e0b;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+.edit-button {
+  background: #eff6ff !important;
+  color: #1d4ed8 !important;
+  border: none !important;
+  padding: 6px 12px !important;
+  cursor: pointer;
+  transition: background 0.2s !important;
+}
+
+.edit-button:hover { background: #dbeafe !important; }
+
+.delete-button {
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+  border: none !important;
+  padding: 6px 12px !important;
+  cursor: pointer;
+}
+
+.delete-button:hover { background: #fee2e2 !important; }
+
+.table-card table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-card tbody tr {
+  transition: background 0.15s ease;
+}
+
+.table-card tbody tr:hover {
+  background: #fafafa !important;
+}
+
+.modal.show {
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-content {
+  animation: fadeUp 0.3s ease;
+}
+
+.chart-card canvas {
+  max-height: 280px;
+}
+
+.welcome-box {
+  animation: fadeUp 0.35s ease;
+}
+
+.admin-notifications .noti-item {
+  background: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
