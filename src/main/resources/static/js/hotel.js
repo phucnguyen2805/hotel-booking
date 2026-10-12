@@ -77,26 +77,20 @@ async function loadHotel() {
         const stars =
             Number(hotel.stars || 0);
 
-        document.getElementById(
-            "hotelStars"
-        ).textContent =
-            "".repeat(stars);
+        document.getElementById("hotelStars").textContent =
+          "★".repeat(stars) + "☆".repeat(Math.max(0, 5 - stars));
 
 
         // Thành phố
 
-        document.getElementById(
-            "hotelCity"
-        ).textContent =
-            ` ${hotel.city || ""}`;
+        document.getElementById("hotelCity").innerHTML =
+            `<i class="fa-solid fa-location-dot"></i> ${hotel.city || ""}`;
 
 
         // Địa chỉ
 
-        document.getElementById(
-            "hotelAddress"
-        ).textContent =
-            hotel.address || "";
+        document.getElementById("hotelAddress").innerHTML =
+            `<i class="fa-solid fa-map"></i> ${hotel.address || ""}`;
 
 
     } catch (error) {
@@ -530,7 +524,59 @@ async function submitReview() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+async function submitFeedback() {
+  const user = getCurrentUser();
+  if (!user) {
+    showToast("Vui lòng đăng nhập để gửi góp ý", "warning");
+    return;
+  }
+  const box = document.getElementById("feedbackContent");
+  const content = box.value.trim();
+  if (content.length < 5) {
+    showToast("Góp ý quá ngắn (tối thiểu 5 ký tự)", "warning");
+    return;
+  }
+  try {
+    const res = await fetch("/feedbacks", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        hotelId,
+        userId: user.userId,
+        userName: user.name || user.email,
+        content,
+      }),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.message || "Gửi góp ý thất bại");
+    showToast("Đã gửi góp ý, cảm ơn bạn!", "success");
+    box.value = "";
+  } catch (e) {
+    showToast(e.message, "error");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const inEl = document.getElementById("checkIn");
+  const outEl = document.getElementById("checkOut");
+  const fbSection = document.getElementById("feedbackSection");
+  if (fbSection && getCurrentUserId()) fbSection.style.display = "";
+  if (inEl && outEl) {
+    const toISO = (d) =>
+      new Date(d.getTime() - d.getTimezoneOffset() * 60000)
+        .toISOString()
+        .slice(0, 10);
+    const today = new Date();
+    inEl.min = toISO(today);
+    outEl.min = toISO(new Date(today.getTime() + 86400000));
+    inEl.addEventListener("change", function () {
+      if (!inEl.value) return;
+      const next = new Date(inEl.value);
+      next.setDate(next.getDate() + 1);
+      outEl.min = toISO(next);
+      if (outEl.value && outEl.value <= inEl.value) outEl.value = "";
+    });
+  }
   if (typeof hotelId !== "undefined" && hotelId) {
     setTimeout(loadReviews, 300);
   }

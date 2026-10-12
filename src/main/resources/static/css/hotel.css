@@ -33,15 +33,6 @@
     overflow: hidden;
 }
 
-.hotel-banner::after {
-    content: '';
-    width: 80px;
-    height: 80px;
-    background: rgba(255,255,255,0.2);
-    border-radius: 20px;
-    backdrop-filter: blur(4px);
-}
-
 .hotel-banner-icon {
     display: none;
 }
@@ -81,7 +72,9 @@
 
 .availability-section {
 
-    max-width: 1100px;
+    max-width: 1060px;
+
+    width: calc(100% - 40px);
 
     margin: 30px auto;
 
@@ -298,7 +291,7 @@
 
     border-radius: 6px;
 
-    background: #ff9800;
+    background: #0f766e;
 
     color: white;
 
@@ -310,7 +303,7 @@
 
 .book-button:hover {
 
-    background: #f57c00;
+    background: #0d5c56;
 }
 
 
@@ -350,7 +343,7 @@
 /* Banner khách sạn: dùng ảnh thật theo khách sạn thay vì placeholder icon */
 .hotel-banner {
     min-height: 280px;
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px;
     background-color: #dbeafe;
     background-repeat: no-repeat;
     background-size: cover;
@@ -375,7 +368,7 @@
 @media (max-width: 640px) {
     .hotel-banner {
         min-height: 210px;
-        border-radius: 14px 14px 0 0;
+        border-radius: 14px;
     }
 }
 
@@ -389,3 +382,44 @@
 .room-card-image {
   border-radius: 0 !important;
 }
+
+/* UX polish: chi tiết khách sạn */
+.hotel-detail-info .hotel-stars { margin-bottom: 4px; }
+.hotel-detail-info p i { width: 18px; color: #0f766e; margin-right: 4px; }
+.date-group input:focus {
+    outline: none;
+    border-color: #0f766e;
+    box-shadow: 0 0 0 3px rgba(15,118,110,.15);
+}
+.check-button, .book-button { transition: background .2s, transform .1s; }
+.check-button:active, .book-button:active { transform: translateY(1px); }
+@media (max-width: 800px) {
+    .check-button { width: 100%; }
+}
+
+/* Feedback box */
+.feedback-box {
+    background: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.feedback-box textarea {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 90px;
+    resize: vertical;
+    border: 1px solid #d7dee8;
+    border-radius: 11px;
+    padding: 12px 14px;
+    font: inherit;
+}
+.feedback-box textarea:focus {
+    outline: none;
+    border-color: #0f766e;
+    box-shadow: 0 0 0 3px rgba(15,118,110,.12);
+}
+.feedback-box .check-button { align-self: flex-end; }

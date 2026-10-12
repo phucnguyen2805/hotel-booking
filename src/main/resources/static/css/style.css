@@ -2,9 +2,9 @@
 
 :root {
     /* Phong cách gần Library: neutral + accent teal */
-    --primary: #171717;
-    --primary-dark: #0a0a0a;
-    --primary-light: #0f766e;
+    --primary: #0f766e;
+    --primary-dark: #0d5c56;
+    --primary-light: #14b8a6;
     --accent: #0f766e;
     --accent-hover: #0d5c56;
     --bg: #f7f7f6;
@@ -321,15 +321,6 @@ body.page-loaded {
     position: relative;
 }
 
-.hotel-image::after {
-    content: '';
-    width: 48px;
-    height: 48px;
-    background: rgba(255,255,255,0.25);
-    border-radius: 12px;
-    backdrop-filter: blur(4px);
-}
-
 .hotel-info {
     padding: 20px;
 }
@@ -399,7 +390,7 @@ body.page-loaded {
 
 /* ========== FOOTER ========== */
 footer {
-    background: #0f172a;
+    background: #134e4a;
     color: #94a3b8;
     text-align: center;
     padding: 32px 20px;
@@ -1044,7 +1035,7 @@ footer a:hover {
 .search-box input:focus,
 .search-box select:focus,
 .form-group input:focus {
-    outline: 2px solid var(--text);
+    outline: 2px solid var(--primary);
     outline-offset: 1px;
     background: #fff !important;
 }
@@ -1219,6 +1210,6 @@ footer, .footer {
 
 /* Consistent black primary across pages */
 .header nav a.active {
-  background: #171717 !important;
+  background: #0f766e !important;
   color: #fff !important;
 }

@@ -156,7 +156,7 @@ input, button {
   border-radius: 12px !important;
 }
 button[type="submit"], .login-button, .register-button {
-  background: #171717 !important;
+  background: #0f766e !important;
   color: #fff !important;
   border-radius: 999px !important;
   font-weight: 600 !important;

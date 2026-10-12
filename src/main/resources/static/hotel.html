@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi tiết khách sạn - Hotel Booking</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/hotel.css">
+    <link rel="stylesheet" href="/css/style.css?v=6">
+    <link rel="stylesheet" href="/css/hotel.css?v=6">
     <link rel="stylesheet" href="/css/review-modern.css?v=5">
 </head>
 
@@ -67,6 +67,19 @@
             <p id="pricePreview" class="availability-message" style="font-weight:700;color:#0f766e"></p>
         </section>
 
+        <section class="rooms-section" id="feedbackSection" style="display:none">
+            <div class="section-title">
+                <h2><i class="fa-regular fa-comment-dots"></i> Góp ý cho khách sạn</h2>
+            </div>
+            <div class="feedback-box">
+                <textarea id="feedbackContent" rows="3" maxlength="1000"
+                    placeholder="Bạn muốn góp ý điều gì về khách sạn này? (gửi riêng cho quản trị viên)"></textarea>
+                <button type="button" class="check-button" onclick="submitFeedback()">
+                    <i class="fa-solid fa-paper-plane"></i> Gửi góp ý
+                </button>
+            </div>
+        </section>
+
         <section class="rooms-section">
             <div class="section-title">
                 <h2><i class="fa-solid fa-star"></i> Đánh giá</h2>
@@ -121,7 +134,7 @@
     </footer>
 
     <script src="/js/auth.js?v=5"></script>
-    <script src="/js/hotel.js?v=5"></script>
+    <script src="/js/hotel.js?v=7"></script>
 
 </body>
 

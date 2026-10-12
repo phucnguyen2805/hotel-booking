@@ -114,6 +114,8 @@ function showSection(sectionId, button) {
 
     users: "Quản lý người dùng",
 
+    feedbacks: "Góp ý của khách",
+
     audit: "Nhật ký thao tác",
 
     backup: "Backup / Restore",
@@ -156,6 +158,10 @@ function showSection(sectionId, button) {
 
   if (sectionId === "users") {
     loadAdminUsers();
+  }
+
+  if (sectionId === "feedbacks") {
+    loadAdminFeedbacks();
   }
 }
 
@@ -1762,5 +1768,78 @@ async function uploadImage(fileInputId, urlInputId, type) {
     if (typeof showToast === "function")
       showToast("Upload thất bại: " + e.message, "error");
     else alert("Upload thất bại: " + e.message);
+  }
+}
+
+async function loadAdminFeedbacks() {
+  const tbody = document.getElementById("feedbackTable");
+  if (!tbody) return;
+  tbody.innerHTML =
+    '<tr><td colspan="6" class="table-empty">Đang tải...</td></tr>';
+  try {
+    const res = await fetch(
+      `/admin/feedbacks?userId=${encodeURIComponent(getAdminId())}`,
+    );
+    if (!res.ok) throw new Error("Không tải được danh sách góp ý");
+    const rows = await res.json();
+    if (!rows.length) {
+      tbody.innerHTML =
+        '<tr><td colspan="6" class="table-empty">Chưa có góp ý nào</td></tr>';
+      return;
+    }
+    tbody.innerHTML = rows
+      .map((f) => {
+        const done = f.status === "done";
+        const time = f.createdAt
+          ? new Date(f.createdAt).toLocaleString("vi-VN")
+          : "";
+        return `<tr>
+        <td>${escapeHtml(time)}</td>
+        <td>${escapeHtml(f.hotelId)}</td>
+        <td>${escapeHtml(f.userName)}</td>
+        <td style="max-width:320px;white-space:normal">${escapeHtml(f.content)}</td>
+        <td>${done ? '<span class="badge badge-success">Đã xử lý</span>' : '<span class="badge badge-warning">Mới</span>'}</td>
+        <td>
+          <button class="table-button role-button" onclick="setFeedbackStatus('${f.feedbackId}','${done ? "new" : "done"}')">
+            <i class="fa-solid fa-${done ? "rotate-left" : "check"}"></i> ${done ? "Mở lại" : "Đã xử lý"}
+          </button>
+          <button class="table-button danger" onclick="deleteFeedback('${f.feedbackId}')">
+            <i class="fa-solid fa-trash"></i> Xóa
+          </button>
+        </td>
+      </tr>`;
+      })
+      .join("");
+  } catch (e) {
+    tbody.innerHTML = `<tr><td colspan="6" class="table-empty error">${escapeHtml(e.message)}</td></tr>`;
+  }
+}
+
+async function setFeedbackStatus(feedbackId, status) {
+  try {
+    const res = await fetch(
+      `/admin/feedbacks/${encodeURIComponent(feedbackId)}/status?userId=${encodeURIComponent(getAdminId())}&status=${status}`,
+      { method: "PUT" },
+    );
+    if (!res.ok) throw new Error("Cập nhật thất bại");
+    loadAdminFeedbacks();
+  } catch (e) {
+    showToast(e.message, "error");
+  }
+}
+
+async function deleteFeedback(feedbackId) {
+  const ok = await showConfirm("Xóa góp ý này?");
+  if (!ok) return;
+  try {
+    const res = await fetch(
+      `/admin/feedbacks/${encodeURIComponent(feedbackId)}?userId=${encodeURIComponent(getAdminId())}`,
+      { method: "DELETE" },
+    );
+    if (!res.ok) throw new Error("Xóa thất bại");
+    showToast("Đã xóa góp ý", "success");
+    loadAdminFeedbacks();
+  } catch (e) {
+    showToast(e.message, "error");
   }
 }

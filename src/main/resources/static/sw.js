@@ -1,4 +1,4 @@
-const CACHE = "hotel-booking-v5";
+const CACHE = "hotel-booking-v6";
 const SHELL = ["/css/style.css", "/js/auth.js"];
 
 self.addEventListener("install", event => {

@@ -70,6 +70,10 @@
                     <i class="fa-solid fa-users"></i>
                     <span>Người dùng</span>
                 </button>
+                <button class="menu-item" onclick="showSection('feedbacks', this)">
+                    <i class="fa-regular fa-comment-dots"></i>
+                    <span>Góp ý</span>
+                </button>
                 <button class="menu-item" onclick="showSection('audit', this)">
                     <i class="fa-solid fa-clipboard-list"></i>
                     <span>Nhật ký</span>
@@ -577,8 +581,35 @@
 
             <!-- =====================================
              BACKUP
-        ====================================== -->
-
+            ====================================== -->
+            <section id="feedbacks" class="admin-section">
+                <div class="section-header">
+                    <div>
+                        <h2><i class="fa-regular fa-comment-dots"></i> Góp ý của khách</h2>
+                        <p>Xem và xử lý góp ý gửi từ trang khách sạn</p>
+                    </div>
+                    <button class="primary-button" onclick="loadAdminFeedbacks()">
+                        <i class="fa-solid fa-rotate"></i> Làm mới
+                    </button>
+                </div>
+                <div class="table-card">
+                    <div class="table-scroll">
+                        <table class="booking-admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Thời gian</th>
+                                    <th>Khách sạn</th>
+                                    <th>Người gửi</th>
+                                    <th>Nội dung</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="feedbackTable"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
 
             <section id="audit" class="admin-section">
                 <div class="section-header">
@@ -951,7 +982,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <script src="/js/auth.js?v=5"></script>
-    <script src="/js/admin.js"></script>
+    <script src="/js/admin.js?v=2"></script>
 
 </body>
 
