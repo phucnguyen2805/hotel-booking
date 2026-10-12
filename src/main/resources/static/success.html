@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt phòng thành công - Hotel Booking</title>
+    <meta name="description" content="Xác nhận đặt phòng khách sạn thành công trên Hotel Booking.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <a href="/about.html" class="logo"><span>Hotel Booking</span></a>
+        <nav>
+            <a href="/search.html">Tìm khách sạn</a>
+            <a href="/about.html">Giới thiệu</a>
+            <a id="accountLink" href="/user.html" style="display:none"><i class="fa-solid fa-user"></i> Tài khoản</a>
+            <a id="loginLink" href="/login.html">Đăng nhập</a>
+            <a id="adminLink" href="/admin.html" style="display:none">Quản trị</a>
+            <span id="userInfo" class="user-info"></span>
+            <button id="logoutButton" class="logout-button" onclick="logout()">Đăng xuất</button>
+        </nav>
+    </header>
+
+    <main class="success-wrap">
+        <div class="success-card">
+            <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+            <h1>Đặt phòng thành công!</h1>
+            <p>Cảm ơn bạn đã đặt phòng. Thông tin chi tiết như sau:</p>
+            <div class="success-details" id="successDetails">
+                <div class="row"><span>Mã booking</span><strong id="sBookingId">--</strong></div>
+                <div class="row"><span>Khách sạn</span><strong id="sHotelId">--</strong></div>
+                <div class="row"><span>Phòng</span><strong id="sRoomId">--</strong></div>
+                <div class="row"><span>Nhận phòng</span><strong id="sCheckIn">--</strong></div>
+                <div class="row"><span>Trả phòng</span><strong id="sCheckOut">--</strong></div>
+                <div class="row"><span>Số người</span><strong id="sGuests">--</strong></div>
+                <div class="row"><span>Tổng tiền</span><strong id="sTotal">--</strong></div>
+            </div>
+            <div class="success-actions">
+                <a class="ui-btn ui-btn-primary" href="/user.html"><i class="fa-solid fa-clock-rotate-left"></i> Xem lịch sử</a>
+                <a class="ui-btn ui-btn-ghost" href="/search.html"><i class="fa-solid fa-magnifying-glass"></i> Tìm thêm khách sạn</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hotel Booking. Tất cả quyền được bảo lưu.</p>
+    </footer>
+    <script src="/js/auth.js?v=5"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const p = new URLSearchParams(location.search);
+            const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v || "--"; };
+            set("sBookingId", p.get("bookingId"));
+            set("sHotelId", p.get("hotelId"));
+            set("sRoomId", p.get("roomId"));
+            set("sCheckIn", p.get("checkIn"));
+            set("sCheckOut", p.get("checkOut"));
+            set("sGuests", p.get("guests") ? p.get("guests") + " người" : "--");
+            const total = p.get("total");
+            set("sTotal", total ? Number(total).toLocaleString("vi-VN") + " đ" : "--");
+        });
+    </script>
+</body>
+</html>

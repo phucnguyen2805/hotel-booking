@@ -1,0 +1,8 @@
+# Redis demo commands
+SET cache:hotels:all "[]" EX 300
+ZINCRBY leaderboard:hotels 1 H01
+ZINCRBY leaderboard:hotels 1 H02
+ZREVRANGE leaderboard:hotels 0 9 WITHSCORES
+SET otp:demo@gmail.com 123456 EX 300
+KEYS *
+TTL otp:demo@gmail.com

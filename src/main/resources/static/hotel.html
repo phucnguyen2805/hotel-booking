@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết khách sạn - Hotel Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/hotel.css">
+    <link rel="stylesheet" href="/css/review-modern.css?v=5">
+</head>
+
+<body>
+
+    <header class="header">
+        <a href="/search.html" class="logo">
+            <span>Hotel Booking</span>
+        </a>
+
+        <nav>
+            <a href="/about.html">Giới thiệu</a>
+            <a href="/search.html">Tìm khách sạn</a>
+            <a id="accountLink" href="/user.html" style="display:none">Tài khoản</a>
+            <a id="loginLink" href="/login.html">Đăng nhập</a>
+            <a id="adminLink" href="/admin.html" style="display:none">Quản trị</a>
+            <span id="userInfo" class="user-info"></span>
+            <button id="logoutButton" class="logout-button" onclick="logout()">Đăng xuất</button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hotel-detail">
+            <div class="hotel-banner" id="hotelBanner">
+                <div class="hotel-banner-overlay">
+                    <span><i class="fa-solid fa-hotel"></i> Hotel Booking</span>
+                </div>
+            </div>
+
+            <div class="hotel-detail-info">
+                <h1 id="hotelName">Đang tải...</h1>
+                <div id="hotelStars" class="hotel-stars"></div>
+                <p id="hotelCity">Đang tải...</p>
+                <p id="hotelAddress">Đang tải...</p>
+            </div>
+        </section>
+
+        <section class="availability-section">
+            <h2><i class="fa-solid fa-calendar-days"></i> Kiểm tra phòng còn trống</h2>
+
+            <div class="date-search">
+                <div class="date-group">
+                    <label>Ngày nhận phòng</label>
+                    <input type="date" id="checkIn">
+                </div>
+
+                <div class="date-group">
+                    <label>Ngày trả phòng</label>
+                    <input type="date" id="checkOut">
+                </div>
+
+                <button onclick="checkAvailableRooms()" class="check-button"><i
+                        class="fa-solid fa-magnifying-glass"></i> Kiểm tra phòng</button>
+            </div>
+
+            <p id="availabilityMessage" class="availability-message"></p>
+            <p id="pricePreview" class="availability-message" style="font-weight:700;color:#0f766e"></p>
+        </section>
+
+        <section class="rooms-section">
+            <div class="section-title">
+                <h2><i class="fa-solid fa-star"></i> Đánh giá</h2>
+            </div>
+            <div id="reviewList" class="booking-list"></div>
+            <div class="review-form-modern" id="reviewForm" style="display:none">
+                <div class="review-form-title">
+                    <div>
+                        <strong>Chia sẻ trải nghiệm của bạn</strong>
+                        <span>Đánh giá giúp những khách khác chọn phòng dễ hơn.</span>
+                    </div>
+                </div>
+                <div class="review-form-fields">
+                    <div class="review-field review-stars-field">
+                        <label for="reviewStars"><i class="fa-solid fa-star"></i> Số sao</label>
+                        <select id="reviewStars">
+                            <option value="5">★★★★★ 5 sao</option>
+                            <option value="4">★★★★☆ 4 sao</option>
+                            <option value="3">★★★☆☆ 3 sao</option>
+                            <option value="2">★★☆☆☆ 2 sao</option>
+                            <option value="1">★☆☆☆☆ 1 sao</option>
+                        </select>
+                    </div>
+                    <div class="review-field review-comment-field">
+                        <label for="reviewComment"><i class="fa-regular fa-comment"></i> Nhận xét</label>
+                        <textarea id="reviewComment" rows="3"
+                            placeholder="Hãy chia sẻ cảm nhận của bạn về khách sạn..."></textarea>
+                    </div>
+                </div>
+                <div class="review-form-actions">
+                    <button class="review-submit" id="submitReview" type="button" onclick="submitReview()">
+                        <i class="fa-solid fa-paper-plane"></i> Gửi đánh giá
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="rooms-section">
+            <div class="section-title">
+                <h2><i class="fa-solid fa-bed"></i> Danh sách phòng</h2>
+                <span id="roomCount"></span>
+            </div>
+
+            <div id="roomResults" class="room-list">
+                <div class="empty-message">Đang tải danh sách phòng...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Hotel Booking. Tất cả quyền được bảo lưu.</p>
+    </footer>
+
+    <script src="/js/auth.js?v=5"></script>
+    <script src="/js/hotel.js?v=5"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài khoản - Hotel Booking</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/user.css?v=5">
+    <link rel="stylesheet" href="/css/history.css?v=5">
+</head>
+
+<body>
+    <header class="header">
+        <a href="/search.html" class="logo"><span>Hotel Booking</span></a>
+        <nav>
+            <a href="/about.html">Giới thiệu</a>
+            <a href="/search.html">Tìm khách sạn</a>
+            <a id="accountLink" href="/user.html" class="active">Tài khoản</a>
+            <a id="loginLink" href="/login.html">Đăng nhập</a>
+            <a id="adminLink" href="/admin.html" style="display:none">Quản trị</a>
+            <span id="userInfo" class="user-info"></span>
+            <button id="logoutButton" class="logout-button" onclick="logout()">Đăng xuất</button>
+        </nav>
+    </header>
+    <main class="user-page">
+        <section class="profile-hero">
+            <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
+            <div><span class="profile-kicker">TÀI KHOẢN CỦA BẠN</span>
+                <h1 id="profileName">Đang tải...</h1>
+                <p id="profileEmail">--</p>
+            </div>
+        </section>
+        <div class="user-tabs" role="tablist">
+            <button class="user-tab active" data-tab="profile"><i class="fa-solid fa-id-card"></i> Thông tin</button>
+            <button class="user-tab" data-tab="favorites"><i class="fa-solid fa-heart"></i> Yêu thích <span
+                    id="favoriteCount" class="tab-count">0</span></button>
+            <button class="user-tab" data-tab="history"><i class="fa-solid fa-clock-rotate-left"></i> Lịch sử <span
+                    id="historyCount" class="tab-count">0</span></button>
+        </div>
+        <section id="tab-profile" class="user-tab-panel active">
+            <div class="profile-card">
+                <h2>Thông tin tài khoản</h2>
+                <div class="profile-grid">
+                    <div><span>Họ tên</span><strong id="infoName">--</strong></div>
+                    <div><span>Email</span><strong id="infoEmail">--</strong></div>
+                    <div><span>Mã người dùng</span><strong id="infoId">--</strong></div>
+                    <div><span>Vai trò</span><strong id="infoRole">--</strong></div>
+                </div>
+            </div>
+        </section>
+        <section id="tab-favorites" class="user-tab-panel">
+            <div class="panel-heading">
+                <div>
+                    <h2>Khách sạn yêu thích</h2>
+                    <p>Các khách sạn bạn đã lưu để xem lại nhanh hơn.</p>
+                </div><a class="ui-btn ui-btn-ghost" href="/search.html">Tìm thêm</a>
+            </div>
+            <div id="favoriteList" class="favorite-grid"></div>
+        </section>
+        <section id="tab-history" class="user-tab-panel">
+            <div class="panel-heading">
+                <div>
+                    <h2>Lịch sử đặt phòng</h2>
+                    <p>Theo dõi, thanh toán và hủy booking ngay trong tài khoản.</p>
+                </div><button class="ui-btn ui-btn-ghost" id="refreshHistory"><i class="fa-solid fa-rotate"></i> Làm
+                    mới</button>
+            </div>
+            <div class="history-filters"><label>Trạng thái<select id="historyStatusFilter">
+                        <option value="">Tất cả</option>
+                        <option value="confirmed">Đã xác nhận</option>
+                        <option value="cancelled">Đã hủy</option>
+                        <option value="completed">Hoàn tất</option>
+                    </select></label><label>Thanh toán<select id="historyPaymentFilter">
+                        <option value="">Tất cả</option>
+                        <option value="paid">Đã thanh toán</option>
+                        <option value="unpaid">Chưa thanh toán</option>
+                    </select></label></div>
+            <div id="userBookingList" class="booking-list"></div>
+            <div id="userHistoryPagination" class="pagination"></div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2026 Hotel Booking. Tất cả quyền được bảo lưu.</p>
+    </footer>
+    <script src="/js/auth.js?v=5"></script>
+    <script src="/js/user.js?v=5"></script>
+</body>
+
+</html>

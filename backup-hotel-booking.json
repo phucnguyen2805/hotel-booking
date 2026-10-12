@@ -1,0 +1,144 @@
+[ {
+  "password" : "123456",
+  "role" : "CUSTOMER",
+  "SK" : "META",
+  "name" : "Nguyen Van B",
+  "PK" : "USER#UDFA5C2",
+  "email" : "vanb@gmail.com"
+}, {
+  "password" : "admin123",
+  "role" : "ADMIN",
+  "SK" : "META",
+  "name" : "Administrator",
+  "PK" : "USER#A001",
+  "email" : "admin@example.com"
+}, {
+  "createdAt" : "2026-09-10T10:00:00Z",
+  "total" : 3600000,
+  "checkIn" : "2026-09-15",
+  "SK" : "BOOKING#B001",
+  "PK" : "GUEST#G01",
+  "hotelId" : "H01",
+  "checkOut" : "2026-09-17",
+  "paymentStatus" : "paid",
+  "roomId" : "R101",
+  "status" : "confirmed"
+}, {
+  "createdAt" : "2026-09-10T10:28:45.602001900Z",
+  "total" : 3600000,
+  "checkIn" : "2026-09-17",
+  "SK" : "BOOKING#B7D2EA2",
+  "PK" : "GUEST#G01",
+  "hotelId" : "H01",
+  "checkOut" : "2026-09-20",
+  "roomId" : "R102",
+  "status" : "cancelled"
+}, {
+  "createdAt" : "2026-09-10T09:12:31.056791600Z",
+  "total" : 3600000,
+  "checkIn" : "2026-09-20",
+  "SK" : "BOOKING#B8BA2EF",
+  "PK" : "GUEST#G01",
+  "hotelId" : "H01",
+  "checkOut" : "2026-09-22",
+  "roomId" : "R101",
+  "status" : "cancelled"
+}, {
+  "createdAt" : "2026-09-10T10:24:27.860059500Z",
+  "total" : 3600000,
+  "checkIn" : "2026-09-25",
+  "SK" : "BOOKING#BB75FF1",
+  "hotelId" : "H01",
+  "PK" : "GUEST#G01",
+  "checkOut" : "2026-09-27",
+  "roomId" : "R101",
+  "status" : "confirmed"
+}, {
+  "phone" : "0909123456",
+  "SK" : "META",
+  "name" : "Nguyen Van A",
+  "PK" : "GUEST#G01",
+  "email" : "vana@example.com"
+}, {
+  "address" : "123 Test Street",
+  "GSI1PK" : "CITY#Da Nang",
+  "city" : "Da Nang",
+  "GSI1SK" : "HOTEL#H02",
+  "SK" : "META",
+  "name" : "Test Hotel Update",
+  "PK" : "HOTEL#H02",
+  "stars" : 4
+}, {
+  "maxGuest" : 2,
+  "price" : 1500000,
+  "SK" : "ROOM#R103",
+  "PK" : "HOTEL#H02",
+  "type" : "Deluxe",
+  "status" : "available"
+}, {
+  "address" : "Test Address",
+  "GSI1PK" : "CITY#Ho Chi Minh",
+  "city" : "Ho Chi Minh",
+  "GSI1SK" : "HOTEL#H03",
+  "SK" : "META",
+  "name" : "Admin Test Hotel",
+  "PK" : "HOTEL#H03",
+  "stars" : 4
+}, {
+  "createdAt" : "2026-09-10T10:46:33.846673200Z",
+  "total" : 2400000,
+  "checkIn" : "2026-09-18",
+  "SK" : "BOOKING#B819AEB",
+  "PK" : "GUEST#UDFA5C2",
+  "hotelId" : "H01",
+  "checkOut" : "2026-09-20",
+  "paymentStatus" : "paid",
+  "roomId" : "R102",
+  "status" : "cancelled"
+}, {
+  "address" : "123 Nguyen Hue, Quan 1",
+  "GSI1PK" : "CITY#Ho Chi Minh",
+  "city" : "Ho Chi Minh",
+  "GSI1SK" : "HOTEL#H01",
+  "SK" : "META",
+  "name" : "Grand Hotel Saigon",
+  "PK" : "HOTEL#H01",
+  "stars" : 5
+}, {
+  "maxGuest" : 2,
+  "price" : 1800000,
+  "SK" : "ROOM#R101",
+  "PK" : "HOTEL#H01",
+  "type" : "Deluxe",
+  "status" : "booked"
+}, {
+  "maxGuest" : 4,
+  "price" : 1200000,
+  "SK" : "ROOM#R102",
+  "PK" : "HOTEL#H01",
+  "type" : "Superior",
+  "status" : "available"
+}, {
+  "password" : "123456",
+  "role" : "CUSTOMER",
+  "SK" : "META",
+  "name" : "Nguyen Van B",
+  "PK" : "USER#U22F2F0",
+  "email" : "vanb@example.com"
+}, {
+  "createdAt" : "2026-09-10T11:00:00Z",
+  "total" : 1800000,
+  "checkIn" : "2026-09-20",
+  "SK" : "BOOKING#B002",
+  "PK" : "GUEST#G02",
+  "hotelId" : "H02",
+  "checkOut" : "2026-09-22",
+  "roomId" : "R101",
+  "status" : "pending"
+}, {
+  "phone" : "0912345678",
+  "SK" : "META",
+  "name" : "Tran Thi B",
+  "PK" : "GUEST#G02",
+  "email" : "thib@example.com"
+} ]
