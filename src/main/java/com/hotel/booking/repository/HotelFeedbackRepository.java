@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface HotelFeedbackRepository extends MongoRepository<HotelFeedback, String> {
     List<HotelFeedback> findByHotelId(String hotelId);
+    
+    List<HotelFeedback> findAllByOrderByCreatedAtDesc();
 }

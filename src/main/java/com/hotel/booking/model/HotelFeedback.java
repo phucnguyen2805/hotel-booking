@@ -13,6 +13,8 @@ public class HotelFeedback {
     private String hotelId;
     private String userId;
     private String content;
+    private String userName;
+    private String status = "new"; // new | done
     private Instant createdAt = Instant.now();
 
     public String getId() { return id; }
@@ -25,4 +27,20 @@ public class HotelFeedback {
     public void setContent(String content) { this.content = content; }
     public Instant getCreatedAt() { return createdAt; }
     public void setCreatedAt(Instant createdAt) { this.createdAt = createdAt; }
+    
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
